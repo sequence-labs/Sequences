@@ -7,7 +7,10 @@ function toggleHelpMenu() {
     const helpMenu = document.querySelector('.help_menu');
     const exitButton = document.querySelector('.exit_menu');
 
-    // Add event listeners for click and touch events
+    if (!playButton || !helpMenu || !exitButton) {
+        return;
+    }
+
     playButton.addEventListener('click', (event) => {
         event.stopPropagation();
         helpMenu.style.display = 'block';
@@ -18,12 +21,10 @@ function toggleHelpMenu() {
     });
     exitButton.addEventListener('click', (event) => {
         event.stopPropagation();
-        // Navigate to gamePage.html when the exitButton is clicked
         window.location.href = 'gamePage.html';
     });
     exitButton.addEventListener('touchend', (event) => {
         event.stopPropagation();
-        // Navigate to gamePage.html when the exitButton is tapped
         window.location.href = 'gamePage.html';
     });
     document.addEventListener('click', () => {

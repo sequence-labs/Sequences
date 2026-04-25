@@ -1,42 +1,36 @@
-let consoleLogs = [];
+let selectedHints = [];
 let randomWord;
 function getRandomWord() {
   let randomIndex = Math.floor(Math.random() * wordBank.length);
   randomWord = wordBank[randomIndex];
+  selectedHints = [];
   let hintDivs = document.querySelectorAll(".hint");
   let answerDivs = document.querySelectorAll(".answer_letter");
-  console.log("Random Word:", randomWord);
   for (let i = 0; i < randomWord.length; i++) {
     let letter = randomWord[i];
-    // Check if the letter exists in the updatedHints object
-    if (updatedHints.hasOwnProperty(letter)) {
+    if (Object.prototype.hasOwnProperty.call(updatedHints, letter)) {
       let letterHints = updatedHints[letter];
       let hintIndex = Math.floor(Math.random() * letterHints.length);
       let selectedHint = letterHints[hintIndex];
-      // Convert letterHints to an array and remove the selected hint
       letterHints = Object.values(letterHints);
       letterHints.splice(hintIndex, 1);
       updatedHints[letter] = letterHints;
-      // Add the hint to the appropriate div
-      if (hintDivs[i]) {
+      if (hintDivs[i] && answerDivs[i]) {
         hintDivs[i].innerText = selectedHint.hint;
         answerDivs[i].innerText = selectedHint.hint;
       }
-      console.log("Hint:", selectedHint.hint);
-      consoleLogs.push({ [selectedHint.answer]: selectedHint.hint });
-      console.log("Answer:", selectedHint.answer);
+      selectedHints.push({ [selectedHint.answer]: selectedHint.hint });
     }
   }
-  //console.log(updatedHints)
   return randomWord;
 }
 
 /*
-  This fucntion is used to help the game detrmin when to show the user the Hints when hovering, clicking, or tapping on the word fields.
+  Shows hints when players hover, click, or tap the word fields.
 */
 $(document).ready(function () {
   function isTouchDevice() {
-    return ('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0);
+    return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
   }
 
   function showElement($element) {
@@ -57,7 +51,7 @@ $(document).ready(function () {
 
   function hideHintAndAnswer() {
     if (!$(this).hasClass('correct') && !$(this).hasClass('clicked')) {
-      var hoverTimeout = setTimeout(() => {
+      const hoverTimeout = setTimeout(() => {
         hideElement($(this).data('hint'));
         hideElement($(this).data('answerLetter'));
       }, 200);
@@ -75,8 +69,8 @@ $(document).ready(function () {
   }
 
   $(".word-field, .wordoftheday").each(function (index) {
-    var $hint = $(".hint" + (index + 1));
-    var $answerLetter = $(".answer_letter" + (index + 1));
+    const $hint = $(".hint" + (index + 1));
+    const $answerLetter = $(".answer_letter" + (index + 1));
 
     $(this).data('hint', $hint);
     $(this).data('answerLetter', $answerLetter);
@@ -187,14 +181,11 @@ wordContainers.forEach((wordContainer) => {
       inputs.forEach((input) => {
         currentWord += input.value;
       });
-      //console.log('currentWord:', currentWord);
-      //console.log("Game Word:", consoleLogs);
       if (currentWord.length === inputs.length) {
         let hint = wordContainer.previousElementSibling.textContent.trim();
-        //console.log('hint:', hint);
         let answer = null;
-        for (let i = 0; i < consoleLogs.length; i++) {
-          let log = consoleLogs[i];
+        for (let i = 0; i < selectedHints.length; i++) {
+          let log = selectedHints[i];
           let logKeys = Object.keys(log);
           let logValues = Object.values(log);
           if (logValues.includes(hint)) {
@@ -203,7 +194,6 @@ wordContainers.forEach((wordContainer) => {
             break;
           }
         }
-        //console.log('answer:', answer);
         if (currentWord === answer.toUpperCase()) {
           inputs.forEach((input) => {
             input.setAttribute('readonly', '');
@@ -215,8 +205,6 @@ wordContainers.forEach((wordContainer) => {
           let index = Array.from(wordContainers).indexOf(wordContainer);
           let number = index + 1;
           let wordLetterElement = document.querySelector(`.wordoftheday.word-letter${number}`);
-          //console.log('number:', number); // for debugging
-          //console.log('wordLetterElement:', wordLetterElement); // for debugging
           if (wordLetterElement) {
             wordLetterElement.style.visibility = 'visible'; // change visibility to visible
           }
@@ -274,30 +262,24 @@ $(document).ready(function () {
   // Check if device is mobile
   if (/Mobi|Android/i.test(navigator.userAgent)) {
     positionLocking = lockOnPositionsForMobile;
-    // console.log("Mobile");
-    // console.log("lockOnPositionsForMobile:", lockOnPositionsForMobile)
   } else {
     positionLocking = lockOnPositions;
-    // console.log("Desktop");
   }
   $(".word-field").draggable({
     //containment: ".game-frame",
     scroll: false,
     axis: "x",
     start: function () {
-      // console.log("Adding active class");
       $(this).addClass("active");
       $(this).css("cursor", "move");
       updateWordFieldPositionsBefore();
     },
     drag: function () {
-      // console.log('Dragging...');
       updateWordFieldPositionsAfter();
-      // console.log("Current left position while dragging:", $(this).position().left);
     },
     stop: function () {
-      var position = $(this).position();
-      var closest = findClosestPosition(position.left, positionLocking);
+      const position = $(this).position();
+      const closest = findClosestPosition(position.left, positionLocking);
       $(this).css({ top: '0px', left: closest.closestPosition });
 
       let word = this.classList[0];
@@ -325,8 +307,8 @@ $(document).ready(function () {
     accept: ".word-field",
     tolerance: "intersect",
     drop: function (event, ui) {
-      var droppedWordField = ui.draggable;
-      var wordOfDayPosition = $(this).position();
+      const droppedWordField = ui.draggable;
+      const wordOfDayPosition = $(this).position();
       droppedWordField.css({
         top: '0px',  // force top to 0px
         left: wordOfDayPosition.left
@@ -335,36 +317,31 @@ $(document).ready(function () {
       updateWordFieldPositionsAfter();
     }
   });
-  var wordFieldPositionsBefore = [];
-  var wordFieldPositionsAfter = [];
+  let wordFieldPositionsBefore = [];
+  let wordFieldPositionsAfter = [];
   function updateWordFieldPositionsBefore() {
     wordFieldPositionsBefore = [];
     $(".word-field.active").each(function () {
-      var position = $(this).position();
+      const position = $(this).position();
       wordFieldPositionsBefore.push(position);
     });
   }
   function updateWordFieldPositionsAfter() {
     wordFieldPositionsAfter = [];
     $(".word-field.active").each(function () {
-      var position = $(this).position();
-      //console.log("Word-field being processed:", $(this).attr('class')); // let's see which word-field is being processed
-      //console.log("Position:", position);
+      const position = $(this).position();
       wordFieldPositionsAfter.push(position);
     });
   }
   function findClosestPosition(currentPosition, positions) {
-    var closestPosition = positions[0].position;
-    var closestDistance = Math.abs(currentPosition - closestPosition);
-    var closestIndex = 0;
-    var epsilon = 0.0001; // A small value to handle floating-point imprecision
-    //console.log("Starting with:", closestPosition, " as closest position.");
-    for (var i = 1; i < positions.length; i++) {
-      var distance;
+    let closestPosition = positions[0].position;
+    let closestDistance = Math.abs(currentPosition - closestPosition);
+    let closestIndex = 0;
+    const epsilon = 0.0001;
+    for (let i = 1; i < positions.length; i++) {
+      let distance;
       if (Math.abs(currentPosition - (-0.5)) < epsilon) {
-        // Treat as center position
         distance = Math.abs(positions[i].position - (-0.5));
-        //console.log("Treating as center position:", positions[i].position);
       } else {
         distance = Math.abs(currentPosition - positions[i].position);
       }
@@ -374,8 +351,6 @@ $(document).ready(function () {
         closestIndex = i;
       }
     }
-    console.log("Evaluating Current Position:", currentPosition);
-    console.log("Closest Match Found At:", closestPosition);
     return { closestPosition, closestIndex };
   }
   // Function to handle tap event on the input fields
@@ -393,7 +368,7 @@ $(document).ready(function () {
 });
 
 let submitBtn = document.getElementById('submit-btn');
-document.querySelector('#submit-btn').addEventListener('click', async function () {
+submitBtn.addEventListener('click', function () {
   let fullUserInput = '';
   let fullRandomWord = '';
   finalPositionsForWordFields.forEach((wordField, index) => {
@@ -421,9 +396,6 @@ document.querySelector('#submit-btn').addEventListener('click', async function (
     fullUserInput += userInput.toUpperCase();
     fullRandomWord += randomWord[index].toUpperCase();
   });
-  // console.log('fullUserInput:', fullUserInput);
-  // console.log('fullRandomWord:', fullRandomWord);
-  // Now perform the comparison on full words
   if (fullUserInput === fullRandomWord) {
     // If they match, change the color of the letter boxes to green
     changeInputColor("green");
@@ -492,8 +464,8 @@ function checkAllWordsGuessed() {
     });
     let hint = wordContainer.previousElementSibling.textContent.trim();
     let answer = null;
-    for (let i = 0; i < consoleLogs.length; i++) {
-      let log = consoleLogs[i];
+    for (let i = 0; i < selectedHints.length; i++) {
+      let log = selectedHints[i];
       let logKeys = Object.keys(log);
       let logValues = Object.values(log);
       if (logValues.includes(hint)) {
@@ -502,7 +474,7 @@ function checkAllWordsGuessed() {
         break;
       }
     }
-    if (currentWord.toUpperCase() !== answer.toUpperCase()) {
+    if (!answer || currentWord.toUpperCase() !== answer.toUpperCase()) {
       allWordsGuessed = false;
     }
   });
@@ -511,18 +483,16 @@ function checkAllWordsGuessed() {
 
 
 function isMobileDevice() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-  var isIPad = /iPad/.test(userAgent);
-  var isIPhone = /iPhone/.test(userAgent);
-  var isAndroid = /Android/.test(userAgent);
-  var isMobile = /Mobile|iP(hone|od)|BlackBerry|IEMobile/.test(userAgent);
-  // Touch capabilities
-  var hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  const isIPad = /iPad/.test(userAgent);
+  const isIPhone = /iPhone/.test(userAgent);
+  const isAndroid = /Android/.test(userAgent);
+  const isMobile = /Mobile|iP(hone|od)|BlackBerry|IEMobile/.test(userAgent);
+  const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-  // Screen properties
-  var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  var isSmallScreen = screenWidth <= 800;
+  const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  const isSmallScreen = screenWidth <= 800;
 
   return isIPad || isIPhone || (isAndroid && isMobile) || (hasTouch && isSmallScreen);
 }
@@ -540,14 +510,17 @@ window.addEventListener('resize', handleMobileClass);
 
 document.addEventListener("DOMContentLoaded", function () {
   if (document.body.classList.contains('mobile')) {
-    var metaTag = document.createElement('meta');
+    const metaTag = document.querySelector('meta[name="viewport"]') || document.createElement('meta');
     metaTag.name = "viewport";
-    metaTag.content = "width=device-width, initial-scale=.4, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"; // Added shrink-to-fit attribute
-    document.getElementsByTagName('head')[0].appendChild(metaTag);
+    metaTag.content = "width=device-width, initial-scale=.4, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no";
+    if (!metaTag.parentElement) {
+      document.head.appendChild(metaTag);
+    }
   }
 });
 
 window.addEventListener('load', () => {
+  getRandomWord();
   toggleHelpMenu();
   returnHome();
   playAgain();  
@@ -558,7 +531,10 @@ function toggleHelpMenu() {
   const helpMenu = document.querySelector('.help_menu');
   const exitButton = document.querySelector('.exit_menu');
 
-  // Add event listeners for click and touch events
+  if (!helpButton || !helpMenu || !exitButton) {
+    return;
+  }
+
   helpButton.addEventListener('click', (event) => {
     event.stopPropagation();
     helpMenu.style.display = 'block';
@@ -591,7 +567,9 @@ function toggleHelpMenu() {
 
 function returnHome() {
   const homeButton = document.querySelector('.HomeIcon');
-  // Add event listeners for click and touch events
+  if (!homeButton) {
+    return;
+  }
   homeButton.addEventListener('click', () => {
     window.location.href = 'index.html';
   });
@@ -603,7 +581,9 @@ function returnHome() {
 
 function playAgain() {
   const playAgain = document.querySelector('.play');
-  // Add event listeners for click and touch events
+  if (!playAgain) {
+    return;
+  }
   playAgain.addEventListener('click', () => {
     window.location.href = 'index.html';
   });
@@ -615,6 +595,9 @@ function playAgain() {
 // Check if the body has the "mobile" class and update SVG width and height accordingly
 window.addEventListener('DOMContentLoaded', () => {
   const svgElement = document.querySelector('.HomeIcon svg');
+  if (!svgElement) {
+    return;
+  }
   if (document.body.classList.contains('mobile')) {
     svgElement.setAttribute('width', '40');
     svgElement.setAttribute('height', '42');

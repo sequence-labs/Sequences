@@ -93,7 +93,6 @@ body {
   padding-bottom: var(--dl-space-space-halfunit);
   background-color: transparent;
   outline: none;
-  caret-shape: block;
   /* caret-color: transparent; */
 }
 
