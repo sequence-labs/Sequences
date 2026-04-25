@@ -1277,3 +1277,115 @@ p {
     opacity: 0.035;
   }
 }
+
+/* Homepage poster mode: the hero owns the brand name, the nav stays quiet. */
+.brand-mark.mark-only {
+  gap: 0;
+  width: 76px;
+  justify-content: flex-start;
+}
+
+.brand-mark.mark-only .brand-glyph-image {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+}
+
+.brand-mark.mark-only:hover .brand-glyph-image {
+  transform: translateY(-1px) rotate(-1deg);
+  box-shadow:
+    11px 12px 0 rgba(0, 0, 0, 0.28),
+    0 0 34px rgba(246, 195, 74, 0.22);
+}
+
+@media (max-width: 620px) {
+  .brand-mark.mark-only {
+    width: auto;
+  }
+
+  .brand-mark.mark-only .brand-glyph-image {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Hero mini-board: a quiet Sequences explanation, not a second logo. */
+.tile-logo.sequence-logo {
+  --logo-tile: clamp(58px, 5vw, 88px);
+  --logo-gap: clamp(8px, 0.75vw, 13px);
+  position: relative;
+  display: flex;
+  width: max-content;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--logo-gap);
+  isolation: isolate;
+  transform: rotate(-7deg);
+}
+
+.tile-logo.sequence-logo::before {
+  content: "";
+  position: absolute;
+  top: calc(0px - var(--logo-gap));
+  bottom: calc(0px - var(--logo-gap));
+  left: 50%;
+  z-index: 0;
+  width: calc(var(--logo-tile) + 14px);
+  border: 1px solid rgba(78, 217, 105, 0.34);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(78, 217, 105, 0.18), rgba(78, 217, 105, 0.04));
+  box-shadow: inset 0 0 28px rgba(78, 217, 105, 0.12), 0 0 36px rgba(78, 217, 105, 0.08);
+  transform: translateX(-50%);
+}
+
+.tile-logo.sequence-logo .tile-logo-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: var(--logo-gap);
+  width: max-content;
+}
+
+.tile-logo.sequence-logo .tile-logo-row.shift-0 {
+  transform: translateX(calc(0px - var(--logo-tile) - var(--logo-gap) - var(--logo-tile) - var(--logo-gap)));
+}
+
+.tile-logo.sequence-logo .tile-logo-row.shift-1 {
+  transform: translateX(calc(0px - var(--logo-tile) - var(--logo-gap)));
+}
+
+.tile-logo.sequence-logo .tile-logo-row.shift-2 {
+  transform: translateX(0);
+}
+
+.tile-logo.sequence-logo .tile-logo-row.shift-3 {
+  transform: translateX(calc(var(--logo-tile) + var(--logo-gap)));
+}
+
+.tile-logo.sequence-logo .tile-logo-row.shift-4 {
+  transform: translateX(calc(var(--logo-tile) + var(--logo-gap) + var(--logo-tile) + var(--logo-gap)));
+}
+
+.tile-logo.sequence-logo .tile-logo-cell {
+  width: var(--logo-tile);
+  height: var(--logo-tile);
+  user-select: none;
+}
+
+.tile-logo.sequence-logo .tile-logo-cell.selected {
+  color: #061208;
+  border-color: rgba(92, 238, 116, 0.84);
+  background: #50d96a;
+  box-shadow: 10px 12px 0 rgba(0, 0, 0, 0.3), 0 0 34px rgba(80, 217, 106, 0.22);
+}
+
+@media (max-width: 820px) {
+  .tile-logo.sequence-logo {
+    --logo-tile: clamp(44px, 13vw, 68px);
+    --logo-gap: 8px;
+  }
+
+  .tile-logo.sequence-logo::before {
+    border-radius: 18px;
+  }
+}

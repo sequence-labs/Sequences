@@ -91,14 +91,14 @@ function Shell({ children, tone = "dark" }) {
   return <div className={`site-shell ${tone}`}>{children}</div>;
 }
 
-function SiteNav({ compact = false }) {
+function SiteNav({ compact = false, brandMode = "full" }) {
   return (
     <header className={`site-nav ${compact ? "compact" : ""}`}>
-      <a className="brand-mark" href={href("index.html")} aria-label="Eclipse Studios home">
+      <a className={`brand-mark ${brandMode === "mark" ? "mark-only" : ""}`} href={href("index.html")} aria-label="Eclipse Studios home">
         <span className="brand-glyph brand-glyph-image">
           <img src={eclipseAppIcon} alt="" />
         </span>
-        <span>{brand}</span>
+        {brandMode !== "mark" && <span>{brand}</span>}
       </a>
       <nav aria-label="Primary navigation">
         <a href={href("gamePage.html")}>Play</a>
@@ -111,10 +111,10 @@ function SiteNav({ compact = false }) {
 
 function TileLogo({ animated = false }) {
   const rows = [
-    ["E", "C", "L", "I", "", ""],
-    ["", "", "P", "S", "E", ""],
-    ["S", "T", "U", "D", "", ""],
-    ["", "", "I", "O", "S", ""]
+    ["C", "L", "U", "E", "S", ""],
+    ["", "W", "O", "R", "D", "S"],
+    ["S", "H", "I", "F", "T", ""],
+    ["", "P", "L", "A", "Y", ""]
   ];
 
   return (
@@ -137,7 +137,7 @@ function TileLogo({ animated = false }) {
 function HomePage() {
   return (
     <Shell>
-      <SiteNav />
+      <SiteNav brandMode="mark" />
       <main>
         <section className="hero-section">
           <div className="hero-copy">
