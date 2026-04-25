@@ -1178,17 +1178,6 @@ p {
     justify-self: center;
   }
 
-  .letter-track {
-    grid-template-columns: repeat(5, minmax(44px, 58px));
-    gap: 6px;
-  }
-
-  .game-tile,
-  .game-input {
-    width: min(58px, 15vw);
-    min-width: 44px;
-  }
-
   .center-guide {
     display: none;
   }
@@ -1199,6 +1188,139 @@ p {
 
   .legal-sidebar {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-nav.compact {
+    position: relative;
+    align-items: center;
+    min-height: auto;
+    padding: 18px 20px;
+  }
+
+  .site-nav.compact .brand-mark {
+    align-self: flex-start;
+    font-size: 1.1rem;
+  }
+
+  .site-nav.compact .brand-glyph-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .site-nav.compact nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    padding-top: 12px;
+    gap: 0;
+    font-size: 1.08rem;
+  }
+
+  .site-nav.compact nav a {
+    text-align: center;
+  }
+
+  .site-nav.compact nav a:first-child {
+    text-align: left;
+  }
+
+  .site-nav.compact nav a:last-child {
+    text-align: right;
+  }
+
+  .game-page {
+    width: min(100% - 20px, 390px);
+    padding: 34px 0 calc(120px + env(safe-area-inset-bottom));
+  }
+
+  .game-header {
+    gap: 22px;
+    margin-bottom: 28px;
+  }
+
+  .game-header h1 {
+    max-width: 360px;
+    font-size: clamp(3rem, 16vw, 4.7rem);
+    line-height: 0.92;
+  }
+
+  .game-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 14px;
+  }
+
+  .game-actions button {
+    min-height: 54px;
+    padding: 0 12px;
+    font-size: 1.08rem;
+  }
+
+  .game-board {
+    gap: 22px;
+    padding: 20px 0;
+    overflow: visible;
+    border-radius: 18px;
+  }
+
+  .game-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    min-height: auto;
+  }
+
+  .clue {
+    padding: 0 18px;
+    font-size: clamp(1.03rem, 5.4vw, 1.28rem);
+    line-height: 1.28;
+  }
+
+  .row-playfield {
+    justify-content: center;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .track-window {
+    width: 352px;
+    max-width: 100%;
+    min-height: 66px;
+  }
+
+  .letter-track {
+    grid-template-columns: repeat(5, 64px);
+    gap: 8px;
+  }
+
+  .game-tile,
+  .game-input {
+    width: 64px;
+    font-size: 1.8rem;
+  }
+
+  .submit-panel {
+    align-items: stretch;
+    gap: 18px;
+    margin-top: 18px;
+    padding: 22px 18px;
+  }
+
+  .submit-panel strong {
+    min-width: 0;
+    font-size: clamp(1.7rem, 10vw, 2.15rem);
+    line-height: 1;
+    letter-spacing: 0.08em;
+  }
+
+  .submit-panel .primary-action {
+    width: min(190px, 100%);
+    min-height: 58px;
+    font-size: 1.08rem;
   }
 }
 
