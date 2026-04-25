@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createPuzzle } from "./content/gameData.js";
 import { docGroups, docs, supportEmail } from "./content/legalDocs.js";
 
@@ -196,6 +196,7 @@ function SiteFooter() {
 }
 
 function GamePage() {
+  const inputRefs = useRef(new Map());
   const [puzzle, setPuzzle] = useState(() => createPuzzle());
   const [showHelp, setShowHelp] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
@@ -224,8 +225,66 @@ function GamePage() {
     }));
   }
 
+  function inputKey(rowIndex, letterIndex) {
+    return `${rowIndex}-${letterIndex}`;
+  }
+
+  function registerInput(rowIndex, letterIndex, node) {
+    const key = inputKey(rowIndex, letterIndex);
+    if (node) {
+      inputRefs.current.set(key, node);
+    } else {
+      inputRefs.current.delete(key);
+    }
+  }
+
+  function normalizeLetter(value) {
+    return value.replace(/[^a-z]/gi, "").slice(-1).toUpperCase();
+  }
+
+  function lettersFromValue(value) {
+    return value.replace(/[^a-z]/gi, "").toUpperCase().split("");
+  }
+
+  function positionAfterLetters(rowIndex, letterIndex, lettersEntered) {
+    const finalLinearIndex = rowIndex * 5 + letterIndex + lettersEntered - 1;
+    return {
+      rowIndex: Math.min(rows.length - 1, Math.floor(finalLinearIndex / 5)),
+      letterIndex: finalLinearIndex % 5
+    };
+  }
+
+  function findInputFrom(rowIndex, letterIndex, direction) {
+    let nextRowIndex = rowIndex;
+    let nextLetterIndex = letterIndex + direction;
+
+    while (nextRowIndex >= 0 && nextRowIndex < rows.length) {
+      while (nextLetterIndex >= 0 && nextLetterIndex < 5) {
+        const node = inputRefs.current.get(inputKey(nextRowIndex, nextLetterIndex));
+        if (node) {
+          return { node, rowIndex: nextRowIndex, letterIndex: nextLetterIndex };
+        }
+        nextLetterIndex += direction;
+      }
+
+      nextRowIndex += direction;
+      nextLetterIndex = direction > 0 ? 0 : 4;
+    }
+
+    return null;
+  }
+
+  function focusInputFrom(rowIndex, letterIndex, direction, shouldSelect = false) {
+    const nextInput = findInputFrom(rowIndex, letterIndex, direction);
+    if (!nextInput) return;
+    nextInput.node.focus();
+    if (shouldSelect) {
+      nextInput.node.select();
+    }
+  }
+
   function updateGuess(rowIndex, letterIndex, value) {
-    const nextValue = value.replace(/[^a-z]/gi, "").slice(-1).toUpperCase();
+    const nextValue = normalizeLetter(value);
     setRows((currentRows) =>
       currentRows.map((row, index) => {
         if (index !== rowIndex || row.solved) return row;
@@ -241,6 +300,83 @@ function GamePage() {
       })
     );
     setMessage("");
+  }
+
+  function updateGuesses(rowIndex, letterIndex, letters) {
+    setRows((currentRows) => {
+      const nextRows = currentRows.map((row) => ({
+        ...row,
+        guess: [...row.guess]
+      }));
+      let targetRowIndex = rowIndex;
+      let targetLetterIndex = letterIndex;
+
+      letters.forEach((letter) => {
+        while (targetRowIndex < nextRows.length && nextRows[targetRowIndex].solved) {
+          targetRowIndex += 1;
+          targetLetterIndex = 0;
+        }
+
+        if (targetRowIndex >= nextRows.length) return;
+
+        const row = nextRows[targetRowIndex];
+        row.guess[targetLetterIndex] = letter;
+        row.solved = row.guess.join("") === row.answer;
+        row.selectedIndex = row.solved ? 2 : row.selectedIndex;
+
+        targetLetterIndex += 1;
+        if (targetLetterIndex >= 5) {
+          targetRowIndex += 1;
+          targetLetterIndex = 0;
+        }
+      });
+
+      return nextRows;
+    });
+    setMessage("");
+  }
+
+  function changeGuess(rowIndex, letterIndex, value) {
+    const letters = lettersFromValue(value);
+    if (letters.length > 1) {
+      updateGuesses(rowIndex, letterIndex, letters);
+      const finalPosition = positionAfterLetters(rowIndex, letterIndex, letters.length);
+      focusInputFrom(finalPosition.rowIndex, finalPosition.letterIndex, 1);
+      return;
+    }
+
+    updateGuess(rowIndex, letterIndex, letters[0] || "");
+    if (letters[0]) {
+      focusInputFrom(rowIndex, letterIndex, 1);
+    }
+  }
+
+  function handleGuessKeyDown(event, rowIndex, letterIndex) {
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+
+    if (/^[a-z]$/i.test(event.key)) {
+      event.preventDefault();
+      updateGuess(rowIndex, letterIndex, event.key);
+      focusInputFrom(rowIndex, letterIndex, 1);
+      return;
+    }
+
+    if (event.key !== "Backspace") return;
+
+    const currentValue = rows[rowIndex]?.guess[letterIndex];
+    if (currentValue) {
+      event.preventDefault();
+      updateGuess(rowIndex, letterIndex, "");
+      focusInputFrom(rowIndex, letterIndex, -1, true);
+      return;
+    }
+
+    const previousInput = findInputFrom(rowIndex, letterIndex, -1);
+    if (!previousInput) return;
+    event.preventDefault();
+    updateGuess(previousInput.rowIndex, previousInput.letterIndex, "");
+    previousInput.node.focus();
+    previousInput.node.select();
   }
 
   function startDrag(event, rowIndex) {
@@ -403,11 +539,18 @@ function GamePage() {
                       ) : (
                         <input
                           key={letterIndex}
+                          ref={(node) => registerInput(rowIndex, letterIndex, node)}
                           className="game-input"
                           aria-label={`Row ${rowIndex + 1} letter ${letterIndex + 1}`}
+                          autoComplete="off"
+                          autoCapitalize="characters"
+                          inputMode="text"
                           maxLength="1"
+                          spellCheck="false"
                           value={row.guess[letterIndex]}
-                          onChange={(event) => updateGuess(rowIndex, letterIndex, event.target.value)}
+                          onChange={(event) => changeGuess(rowIndex, letterIndex, event.target.value)}
+                          onFocus={(event) => event.target.select()}
+                          onKeyDown={(event) => handleGuessKeyDown(event, rowIndex, letterIndex)}
                         />
                       )
                     ))}
