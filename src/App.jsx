@@ -44,9 +44,17 @@ function clamp(value, min, max) {
 
 function pathToRoot() {
   const rawPath = window.location.pathname;
-  const localRoot = rawPath.includes("/Studio987/") ? rawPath.split("/Studio987/").pop() : rawPath.replace(/^\/+/, "");
-  const buildRoot = localRoot.includes("dist/") ? localRoot.split("dist/").pop() : localRoot;
-  const depth = buildRoot.split("/").filter(Boolean).length - 1;
+  let sitePath = rawPath.replace(/^\/+/, "");
+  if (rawPath.includes("/Studio987/")) {
+    sitePath = rawPath.split("/Studio987/").pop();
+  }
+  if (sitePath.includes("dist/")) {
+    sitePath = sitePath.split("dist/").pop();
+  }
+  if (window.location.hostname.endsWith("github.io") && sitePath.startsWith("Sequences/")) {
+    sitePath = sitePath.slice("Sequences/".length);
+  }
+  const depth = sitePath.split("/").filter(Boolean).length - 1;
   return depth > 0 ? "../".repeat(depth) : "";
 }
 
