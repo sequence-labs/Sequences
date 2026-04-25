@@ -1,4 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import eclipseAppIcon from "./assets/eclipse-app-icon.png";
+import eclipseSun from "./assets/eclipse-sun.png";
 import { createPuzzle } from "./content/gameData.js";
 import { docGroups, docs, supportEmail } from "./content/legalDocs.js";
 
@@ -63,6 +65,28 @@ function href(path) {
   return `${pathToRoot()}${path}`;
 }
 
+function useBrandIcon() {
+  useEffect(() => {
+    const iconLinks = [
+      { rel: "icon", type: "image/png" },
+      { rel: "apple-touch-icon" }
+    ];
+
+    iconLinks.forEach((iconLink) => {
+      let link = document.querySelector(`link[rel="${iconLink.rel}"]`);
+      if (!link) {
+        link = document.createElement("link");
+        link.rel = iconLink.rel;
+        document.head.appendChild(link);
+      }
+      if (iconLink.type) {
+        link.type = iconLink.type;
+      }
+      link.href = eclipseAppIcon;
+    });
+  }, []);
+}
+
 function Shell({ children, tone = "dark" }) {
   return <div className={`site-shell ${tone}`}>{children}</div>;
 }
@@ -71,7 +95,9 @@ function SiteNav({ compact = false }) {
   return (
     <header className={`site-nav ${compact ? "compact" : ""}`}>
       <a className="brand-mark" href={href("index.html")} aria-label="Eclipse Studios home">
-        <span className="brand-glyph">ES</span>
+        <span className="brand-glyph brand-glyph-image">
+          <img src={eclipseAppIcon} alt="" />
+        </span>
         <span>{brand}</span>
       </a>
       <nav aria-label="Primary navigation">
@@ -131,6 +157,7 @@ function HomePage() {
             </p>
           </div>
           <div className="hero-art">
+            <img className="hero-eclipse-sun" src={eclipseSun} alt="" />
             <TileLogo animated />
             <div className="hero-word">
               <span>S</span>
@@ -772,6 +799,8 @@ function LegalPage({ docId }) {
 }
 
 export default function App({ page, docId }) {
+  useBrandIcon();
+
   if (page === "game") return <GamePage />;
   if (page === "docs") return <DocsIndex />;
   if (page === "legal") return <LegalPage docId={docId} />;
