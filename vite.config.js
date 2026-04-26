@@ -12,6 +12,9 @@ export default defineConfig({
       input: {
         home: resolve(root, "index.html"),
         game: resolve(root, "gamePage.html"),
+        games: resolve(root, "games/index.html"),
+        gridlock: resolve(root, "games/gridlock.html"),
+        tileTangles: resolve(root, "games/tile-tangles.html"),
         termsLegacy: resolve(root, "terms-of-service.html"),
         privacyLegacy: resolve(root, "privacy-policy.html"),
         spyPrivacyLegacy: resolve(root, "spy-privacy-policy.html"),

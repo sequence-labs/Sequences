@@ -3,6 +3,7 @@ import eclipseAppIcon from "./assets/eclipse-app-icon.png";
 import eclipseSun from "./assets/eclipse-sun.png";
 import { createPuzzle } from "./content/gameData.js";
 import { docGroups, docs, supportEmail } from "./content/legalDocs.js";
+import { GamesHub, GridlockGame, TileTanglesGame } from "./wordsmithGames.jsx";
 
 const brand = "Eclipse Studios";
 const tileSize = 72;
@@ -101,7 +102,7 @@ function SiteNav({ compact = false, brandMode = "full" }) {
         {brandMode !== "mark" && <span>{brand}</span>}
       </a>
       <nav aria-label="Primary navigation">
-        <a href={href("gamePage.html")}>Play</a>
+        <a href={href("games/index.html")}>Play</a>
         <a href={href("docs/index.html")}>Docs</a>
         <a href={href("docs/support.html")}>Support</a>
       </nav>
@@ -147,10 +148,10 @@ function HomePage() {
               <span>Studios</span>
             </h1>
             <p className="hero-text">
-              A small studio for sharp little games, starting with Sequences.
+              A small studio for sharp little word games and public app documents.
             </p>
             <div className="hero-actions">
-              <a className="primary-action" href={href("gamePage.html")}>Play Sequences</a>
+              <a className="primary-action" href={href("games/index.html")}>Explore games</a>
             </div>
             <p className="hero-doc-note">
               Looking for privacy policies, terms, or support? <a href={href("docs/index.html")}>Open docs</a>.
@@ -171,35 +172,38 @@ function HomePage() {
 
         <section className="feature-band" aria-labelledby="sequences-title">
           <div>
-            <p className="eyebrow">Featured game</p>
-            <h2 id="sequences-title">Sequences turns word clues into a sliding hidden answer.</h2>
+            <p className="eyebrow">Playable arcade</p>
+            <h2 id="sequences-title">Sequences, Gridlock, and Tile Tangles now share one Eclipse home.</h2>
           </div>
           <p>
-            Solve five clue words, shift each row into place, and read the hidden word down the center.
+            Solve clues, build words from grids, or untangle two hidden five-letter answers.
           </p>
-          <a className="text-link" href={href("gamePage.html")}>Start a puzzle</a>
+          <a className="text-link" href={href("games/index.html")}>Open the arcade</a>
         </section>
 
         <section className="apps-section" aria-labelledby="apps-title">
           <div className="section-heading">
-            <p className="eyebrow">Current apps</p>
-            <h2 id="apps-title">One studio, one reliable home for app documents.</h2>
+            <p className="eyebrow">Current games</p>
+            <h2 id="apps-title">Three web-playable word puzzles, each with its own rhythm.</h2>
           </div>
           <div className="app-list">
             <article>
               <span>01</span>
               <h3>Sequences</h3>
-              <p>Word puzzle game with terms, privacy, and support documents.</p>
+              <p>Clue words slide into a hidden answer down the center.</p>
+              <a className="text-link" href={href("gamePage.html")}>Play Sequences</a>
             </article>
             <article>
               <span>02</span>
-              <h3>Spy</h3>
-              <p>Offline pass-the-phone party game with a privacy-first policy.</p>
+              <h3>Gridlock</h3>
+              <p>Build real words from a living grid before the tiles time out.</p>
+              <a className="text-link" href={href("games/gridlock.html")}>Play Gridlock</a>
             </article>
             <article>
               <span>03</span>
-              <h3>PatchIt</h3>
-              <p>Road issue reporting app with location and map-service disclosures.</p>
+              <h3>Tile Tangles</h3>
+              <p>Move letters through empty slots to restore two five-letter words.</p>
+              <a className="text-link" href={href("games/tile-tangles.html")}>Play Tile Tangles</a>
             </article>
           </div>
         </section>
@@ -802,6 +806,9 @@ export default function App({ page, docId }) {
   useBrandIcon();
 
   if (page === "game") return <GamePage />;
+  if (page === "games") return <Shell><SiteNav compact /><GamesHub href={href} /><SiteFooter /></Shell>;
+  if (page === "gridlock") return <Shell><SiteNav compact /><GridlockGame /><SiteFooter /></Shell>;
+  if (page === "tile-tangles") return <Shell><SiteNav compact /><TileTanglesGame /><SiteFooter /></Shell>;
   if (page === "docs") return <DocsIndex />;
   if (page === "legal") return <LegalPage docId={docId} />;
   return <HomePage />;
