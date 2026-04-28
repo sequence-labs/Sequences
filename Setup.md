@@ -58,6 +58,7 @@ http://127.0.0.1:4173/
 - Workflow runs on push to `main` and manual dispatch.
 - Workflow uses `npm ci`, `npm run build`, `actions/configure-pages`, `actions/upload-pages-artifact`, and `actions/deploy-pages`.
 - Vite build outputs static files into `dist`.
+- Vite copies files from `public/` into `dist`, which is the right path for root-level static files such as `app-ads.txt`.
 
 ## Known machine/project caveats
 
@@ -67,3 +68,4 @@ http://127.0.0.1:4173/
 - `src/content/gridlockWords.js` is intentionally large and should not be read or edited unless word-validation work requires it.
 - Existing docs include Spy and PatchIt privacy pages; the current unified Eclipse Games legal request should not accidentally change those unless explicitly approved.
 - App Store legal wording may require facts from the native Apple app source, not only this web repo.
+- `app-ads.txt` must be present in `public/app-ads.txt` to publish through the current Vite/GitHub Pages Actions deployment.

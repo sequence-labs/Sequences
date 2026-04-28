@@ -21,6 +21,7 @@
 - WP8: Check Apple App Store suitability: public HTTPS links, no login requirement, brand consistency, contact email, data practices, and platform terms language.
 - WP9: Validate locally with Vite build, direct route loading, browser screenshots, and console checks.
 - WP10: Prepare final implementation summary and any App Store copy notes.
+- WP11: Publish `app-ads.txt` through the Vite static build so AdMob can crawl the custom domain root.
 
 ## Estimated agent-hours
 
@@ -61,6 +62,7 @@
 - `npm run build` succeeds.
 - `git diff --check` succeeds.
 - Browser-use screenshots confirm the docs hub and unified docs render cleanly on desktop-sized and mobile-sized views if UI changes are made.
+- `dist/app-ads.txt` is emitted by `npm run build` and contains the AdMob publisher line exactly.
 
 ## Exact validation commands
 
@@ -87,6 +89,12 @@ http://127.0.0.1:4173/docs/games/privacy.html
 http://127.0.0.1:4173/docs/games/terms.html
 ```
 
+AdMob validation target:
+
+```text
+http://127.0.0.1:4173/app-ads.txt
+```
+
 ## Stop and rollback conditions
 
 - Stop if policy drafting requires unsupported claims about Apple app data handling.
@@ -105,4 +113,5 @@ http://127.0.0.1:4173/docs/games/terms.html
 - Legacy Sequences policy and terms URLs now render the unified Eclipse Games documents for compatibility.
 - `npm run build` and `git diff --check` have passed for the implementation.
 - Browser-use route checks are complete for the docs hub, clean unified legal routes, and legacy policy and terms routes.
-- Next step is commit and push.
+- `app-ads.txt` root publishing is implemented and locally validated for AdMob verification on `www.eclipsestudios.io`.
+- Next step is deployment by committing and pushing when requested.

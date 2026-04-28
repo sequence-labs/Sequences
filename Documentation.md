@@ -100,3 +100,36 @@ Open blockers:
 
 Next actions:
 - Commit and push after validation, excluding unrelated `.DS_Store`.
+
+## AdMob app-ads.txt log
+
+Date: 2026-04-28
+
+Started an AdMob verification support pass after the custom developer website domain was changed to `www.eclipsestudios.io`.
+
+Findings:
+- A tracked root `app-ads.txt` already existed with `google.com, pub-8560729629870794, DIRECT, f08c47fec0942fa0`.
+- The current Vite build did not emit root `app-ads.txt` into `dist`, so GitHub Pages Actions would not publish it from the built artifact.
+- Vite copies `public/` files to the build output root, so `public/app-ads.txt` is the required source location for the deployed `/app-ads.txt` route.
+
+Files changed:
+- `public/app-ads.txt`: added the AdMob publisher line so the built site emits `/app-ads.txt`.
+- `Prompt.md`, `Plan.md`, `Setup.md`, and `Documentation.md`: updated durable project state for the AdMob verification route.
+
+Validation plan:
+- Run `npm run build`.
+- Confirm `dist/app-ads.txt` exists and matches the required AdMob publisher line.
+- Run `git diff --check`.
+- Optionally preview `http://127.0.0.1:4173/app-ads.txt` before deployment.
+
+Validation results:
+- `npm run build`: passed. `dist/app-ads.txt` was emitted.
+- `git diff --check`: passed.
+- `cmp -s app-ads.txt public/app-ads.txt`: passed.
+- `cmp -s public/app-ads.txt dist/app-ads.txt`: passed.
+- `curl -fsS http://127.0.0.1:4173/app-ads.txt`: passed and returned `google.com, pub-8560729629870794, DIRECT, f08c47fec0942fa0`.
+- `curl -I -L --max-time 15 http://www.eclipsestudios.io/app-ads.txt`: current live site returns 404 before deployment.
+- `curl -I -L --max-time 15 https://eclipsestudios.io/app-ads.txt`: current live site redirects to `https://www.eclipsestudios.io/app-ads.txt` and returns 404 before deployment.
+
+Remaining deployment step:
+- Commit and push the change so GitHub Pages deploys `https://www.eclipsestudios.io/app-ads.txt`.
