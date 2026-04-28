@@ -1,81 +1,241 @@
 export const supportEmail = "spermwhaledaily@gmail.com";
 
 export const docs = {
-  "sequences-terms": {
+  "eclipse-games-terms": {
     kind: "Terms",
-    appName: "Sequences",
-    title: "Sequences Terms of Service",
-    updated: "January 29, 2025",
-    summary: "These terms explain how you may use Sequences, the word puzzle game from Eclipse Studios.",
-    canonicalPath: "docs/sequences/terms.html",
+    appName: "Eclipse Games",
+    title: "Eclipse Games Terms of Service",
+    updated: "April 28, 2026",
+    summary: "These terms explain how you may use Sequences, Gridlock, and Tile Tangles on the web and through Apple App Store apps.",
+    canonicalPath: "docs/games/terms.html",
     legacyPath: "terms-of-service.html",
     sections: [
       {
         heading: "Acceptance",
         body: [
-          "By downloading, installing, or using Sequences, you agree to these Terms of Service. If you do not agree, please do not use the app."
+          "By accessing, downloading, installing, or using Sequences, Gridlock, Tile Tangles, or any related Eclipse Games web experience or Apple App Store app, you agree to these Terms of Service. If you do not agree, please do not use the games."
         ]
       },
       {
-        heading: "What Sequences Provides",
+        heading: "Covered Games and Platforms",
         body: [
-          "Sequences is a word puzzle game built around five clue words and one hidden answer. Gameplay may include daily or replayable puzzle modes, local progress, scoring, puzzle history, and optional game settings."
+          "These terms apply to Eclipse Studios word games currently known as Sequences, Gridlock, and Tile Tangles.",
+          "They apply whether you play through the Eclipse Studios web site, a browser-based version, or an Apple App Store app version, unless a separate product-specific term says otherwise."
+        ]
+      },
+      {
+        heading: "What the Games Provide",
+        body: [
+          "Sequences is a word puzzle game built around clue words, sliding solved rows, and a hidden answer.",
+          "Gridlock is a word-grid game where you select letters, submit valid words, and manage tile pressure across modes such as Classic, Rush, Time Trial, and Inferno.",
+          "Tile Tangles is a word puzzle where you move letters through empty parking slots to form two five-letter target words.",
+          "Features may include local progress, scores, high scores, timers, hints, puzzle history, replayable puzzles, settings, and visual or gameplay updates over time."
         ]
       },
       {
         heading: "User Conduct",
         body: [
-          "Please use the app fairly and lawfully. Do not attempt to interfere with the app, reverse engineer protected parts of the experience, exploit bugs, misuse intellectual property, or use the app in a way that harms other people or services.",
-          "Competitive or shared play should stay fair. Avoid cheating tools, automated solving, or behavior that undermines the intended puzzle experience."
+          "Use the games lawfully, respectfully, and for their intended personal entertainment purpose.",
+          "Do not interfere with the games, attack the site, exploit bugs, misuse intellectual property, scrape or copy content at scale, bypass access controls, or use automation in a way that undermines the intended puzzle experience.",
+          "Do not use the games or related services to harm other people, Eclipse Studios, platform providers, or third-party services."
         ]
       },
       {
-        heading: "Accounts and Local Data",
+        heading: "Accounts, Local Data, and Device Storage",
         body: [
-          "Sequences is designed to work without a required account. If sign-in is offered, it is optional unless a specific feature says otherwise.",
-          "Game progress and settings may be stored locally on your device. Eclipse Studios does not guarantee recovery of local data if you delete the app, clear app data, change devices, or lose access to local storage."
+          "The covered word games are designed to work without a required Eclipse Studios account unless a future feature clearly says otherwise.",
+          "Game progress, scores, high scores, preferences, settings, hints, timers, and similar gameplay state may be stored locally in your browser or on your device.",
+          "Eclipse Studios does not guarantee recovery of local data if you clear browser storage, delete an app, delete app data, change devices, uninstall software, or lose access to local storage."
+        ]
+      },
+      {
+        heading: "Apple App Store Terms",
+        body: [
+          "If you download or use an Eclipse Studios word game through the Apple App Store, Apple is the app distributor and is not a party to these terms.",
+          "You are also responsible for following Apple's applicable App Store terms, rules, and usage policies.",
+          "Apple has no obligation to provide maintenance or support for the games, but Apple and its subsidiaries are third-party beneficiaries of these terms where required by Apple's platform rules."
         ]
       },
       {
         heading: "Intellectual Property",
         body: [
-          "Eclipse Studios owns the app design, gameplay presentation, artwork, code, written content, branding, and related intellectual property except where third-party rights apply.",
-          "You may use Sequences for personal entertainment. You may not copy, redistribute, sell, or commercially exploit the app or its content without permission."
+          "Eclipse Studios owns the game designs, interfaces, artwork, code, written content, puzzle presentation, branding, and related intellectual property in the covered word games except where third-party rights apply.",
+          "You may use the games for personal entertainment. You may not copy, redistribute, resell, commercially exploit, or create confusingly similar versions of the games or their content without permission."
         ]
       },
       {
-        heading: "App Store Terms",
+        heading: "Third-Party Content and Word Lists",
         body: [
-          "If you download Sequences through the Apple App Store, Apple is the distributor, not a party to these terms. You are also responsible for following Apple's applicable App Store terms and policies."
+          "Some gameplay features may use bundled word lists, platform services, browser APIs, operating-system storage, or other third-party components to make the games work.",
+          "Third-party materials remain subject to their own rights, licenses, and platform rules where applicable."
         ]
       },
       {
-        heading: "Availability and Warranty",
+        heading: "Availability, Changes, and Support",
         body: [
-          "Sequences is provided as is and as available. Eclipse Studios does not promise uninterrupted availability, error-free operation, or that the app will meet every expectation.",
-          "Features may change over time as the app is improved, fixed, or adjusted for platform requirements."
-        ]
-      },
-      {
-        heading: "Limitation of Liability",
-        body: [
-          "To the maximum extent allowed by law, Eclipse Studios is not liable for indirect, incidental, special, consequential, or punitive damages, including loss of progress, data, or enjoyment arising from use of the app."
+          "The games are provided as is and as available. Eclipse Studios does not promise uninterrupted availability, error-free operation, permanent feature availability, or that every puzzle or mode will meet every expectation.",
+          "Features, puzzles, modes, scoring, presentation, and platform support may change over time for maintenance, improvements, compatibility, legal, or platform-policy reasons.",
+          `Questions or support requests can be sent to ${supportEmail}.`
         ]
       },
       {
         heading: "Privacy",
         body: [
-          "Sequences is designed around local gameplay data. For details about data collection, local storage, third-party services, and your controls, read the Sequences Privacy Policy."
+          "The covered word games are designed around local gameplay data and minimal data handling. For details about local storage, diagnostics, third-party services, and your choices, read the Eclipse Games Privacy Policy."
         ],
-        links: [{ label: "Read the Sequences Privacy Policy", href: "privacy-policy.html" }]
+        links: [{ label: "Read the Eclipse Games Privacy Policy", href: "docs/games/privacy.html" }]
       },
       {
-        heading: "Changes, Termination, and Contact",
+        heading: "Limitation of Liability",
         body: [
-          "Eclipse Studios may update these terms when the app, platform rules, or legal requirements change. Continued use after an update means you accept the updated terms.",
-          "You may stop using the app at any time. Eclipse Studios may discontinue features or support where needed.",
-          `Questions about these terms can be sent to ${supportEmail}.`
+          "To the maximum extent allowed by law, Eclipse Studios is not liable for indirect, incidental, special, consequential, exemplary, or punitive damages, including loss of progress, scores, data, access, or enjoyment arising from use of or inability to use the games.",
+          "Some jurisdictions do not allow certain limitations, so parts of this section may not apply to you."
         ]
+      },
+      {
+        heading: "Termination",
+        body: [
+          "You may stop using the games at any time.",
+          "Eclipse Studios may suspend, discontinue, or limit access to the games or features where needed for maintenance, security, legal compliance, platform requirements, or misuse."
+        ]
+      },
+      {
+        heading: "Changes to These Terms",
+        body: [
+          "Eclipse Studios may update these terms when the games, web site, app versions, platform rules, or legal requirements change.",
+          "Continued use after an update means you accept the updated terms."
+        ]
+      },
+      {
+        heading: "Contact",
+        body: [`Questions about these terms can be sent to ${supportEmail}.`]
+      }
+    ]
+  },
+  "sequences-terms": {
+    kind: "Terms",
+    appName: "Sequences",
+    title: "Sequences Terms of Service",
+    updated: "April 28, 2026",
+    summary: "Sequences is covered by the unified Eclipse Games Terms of Service.",
+    canonicalPath: "docs/sequences/terms.html",
+    legacyPath: "terms-of-service.html",
+    sections: [
+      {
+        heading: "Unified Terms",
+        body: [
+          "Sequences, Gridlock, and Tile Tangles are covered by one Eclipse Games Terms of Service for web and Apple App Store app use."
+        ],
+        links: [{ label: "Read the Eclipse Games Terms of Service", href: "docs/games/terms.html" }]
+      }
+    ]
+  },
+  "eclipse-games-privacy": {
+    kind: "Privacy",
+    appName: "Eclipse Games",
+    title: "Eclipse Games Privacy Policy",
+    updated: "April 28, 2026",
+    summary: "This policy explains how Sequences, Gridlock, and Tile Tangles handle data on the web and in Apple App Store app versions.",
+    canonicalPath: "docs/games/privacy.html",
+    legacyPath: "privacy-policy.html",
+    sections: [
+      {
+        heading: "Overview",
+        body: [
+          "Eclipse Studios respects your privacy. This policy explains how information is handled when you use Sequences, Gridlock, Tile Tangles, or related Eclipse Games experiences on the web or through Apple App Store apps.",
+          "The covered word games are designed around local play and minimal data handling. Eclipse Studios does not sell personal data and does not share personal data for cross-context behavioral advertising."
+        ]
+      },
+      {
+        heading: "Covered Games and Platforms",
+        body: [
+          "This policy covers Sequences, Gridlock, and Tile Tangles.",
+          "It applies to browser-based web versions, Eclipse Studios web pages used to play those games, and Apple App Store app versions unless a separate product-specific policy says otherwise."
+        ]
+      },
+      {
+        heading: "Information Stored Locally",
+        body: [
+          "The games may store gameplay information locally on your device or in your browser, such as puzzle progress, solved words, current game state, scores, high scores, timers, hints used, settings, preferences, mode choices, and similar gameplay data.",
+          "Gridlock may store local high scores and game-state details needed for modes, scoring, word selection, timers, and tile states.",
+          "Tile Tangles may store local puzzle state such as tile positions, hints, stars, move counts, timers, and mode choices.",
+          "Sequences may store local puzzle progress, guesses, solved rows, selected letters, completion status, settings, and puzzle history where supported."
+        ]
+      },
+      {
+        heading: "Information Processed to Run the Games",
+        body: [
+          "The web versions process gameplay actions in your browser so the games can respond to taps, typing, dragging, timers, scoring, hints, and puzzle completion.",
+          "Apple App Store app versions may process similar gameplay state on your device so the app can run correctly.",
+          "This gameplay processing is used to provide the game experience, maintain state, improve compatibility, and troubleshoot issues."
+        ]
+      },
+      {
+        heading: "Diagnostics and Technical Information",
+        body: [
+          "The games may use limited technical information needed for crash troubleshooting, performance improvement, security, compatibility, and platform operation.",
+          "Technical information may include device or browser type, operating-system version, app version, error details, performance information, or similar diagnostics when provided by the platform or configured app services.",
+          "Eclipse Studios uses this information to operate, secure, troubleshoot, and improve the games."
+        ]
+      },
+      {
+        heading: "Accounts, Advertising, and Sale of Data",
+        body: [
+          "The covered word games are designed to work without a required Eclipse Studios account unless a future feature clearly says otherwise.",
+          "Eclipse Studios does not use third-party advertising in the covered word games.",
+          "Eclipse Studios does not sell personal data.",
+          "Eclipse Studios does not share personal data for cross-context behavioral advertising."
+        ]
+      },
+      {
+        heading: "Third-Party Services",
+        body: [
+          "The games may rely on platform or infrastructure services needed for app distribution, hosting, diagnostics, security, storage, or compatibility.",
+          "Web versions are hosted as static web pages and may be served through GitHub Pages or similar hosting infrastructure.",
+          "Apple App Store app versions may use Apple platform services for distribution, app updates, crash reports, diagnostics, device storage, and App Store functionality according to your Apple settings and Apple's policies.",
+          "If infrastructure services such as Firebase are used in a future or app-specific feature, they should be used only for the limited purpose described by that feature and platform configuration. Where retention applies to Firebase-backed data, the current policy target is limited retention of up to 90 days."
+        ]
+      },
+      {
+        heading: "Data Sharing",
+        body: [
+          "Eclipse Studios does not sell personal data and does not share personal data for cross-context behavioral advertising.",
+          "Limited technical information may be processed by platform, hosting, diagnostics, or infrastructure providers only as needed to operate, secure, troubleshoot, distribute, or improve the games.",
+          "Eclipse Studios may disclose information if required to comply with law, protect rights, investigate misuse, or maintain security."
+        ]
+      },
+      {
+        heading: "Your Choices and Controls",
+        body: [
+          "You can remove locally stored web gameplay data by clearing browser storage for the site, using browser privacy controls, or using any in-game reset controls that may be available.",
+          "You can remove locally stored app gameplay data by deleting the app, clearing app data where your platform supports it, or using any in-app reset controls that may be available.",
+          "You can control Apple diagnostics and analytics sharing through your Apple device settings."
+        ]
+      },
+      {
+        heading: "Children's Privacy",
+        body: [
+          "The covered word games are designed to avoid collecting personal information from children.",
+          "If you believe a child provided personal information through a related support channel, contact Eclipse Studios so we can help."
+        ]
+      },
+      {
+        heading: "International Users",
+        body: [
+          "If you use the games from outside the United States, information may be processed in the United States or other locations where platform, hosting, diagnostic, or infrastructure providers operate.",
+          "Where privacy laws provide specific rights, you may contact Eclipse Studios to ask questions or request help with access, deletion, or correction where applicable."
+        ]
+      },
+      {
+        heading: "Changes to This Policy",
+        body: [
+          "Eclipse Studios may update this policy when the games, web site, app versions, platform rules, or legal requirements change.",
+          "If new features materially change data practices, this policy should be updated before or when those features are released."
+        ]
+      },
+      {
+        heading: "Contact",
+        body: [`Privacy questions can be sent to ${supportEmail}.`]
       }
     ]
   },
@@ -83,64 +243,17 @@ export const docs = {
     kind: "Privacy",
     appName: "Sequences",
     title: "Sequences Privacy Policy",
-    updated: "January 29, 2025",
-    summary: "Sequences is designed around local play, minimal data handling, and user-controlled game data.",
+    updated: "April 28, 2026",
+    summary: "Sequences is covered by the unified Eclipse Games Privacy Policy.",
     canonicalPath: "docs/sequences/privacy.html",
     legacyPath: "privacy-policy.html",
     sections: [
       {
-        heading: "Overview",
+        heading: "Unified Privacy Policy",
         body: [
-          "Eclipse Studios respects your privacy. This policy explains how information is handled when you use Sequences.",
-          "The app is designed so core game data stays on your device. Eclipse Studios does not sell personal data."
-        ]
-      },
-      {
-        heading: "Information Handled by the App",
-        body: [
-          "Sequences may store local gameplay information such as puzzle progress, completion status, scores, settings, and preferences.",
-          "The app may use technical information needed for game optimization, crash troubleshooting, performance improvement, and compatibility with your device or operating system."
-        ]
-      },
-      {
-        heading: "Local Data and Storage",
-        body: [
-          "Game data is stored locally on your device unless a feature clearly says it uses a cloud or account service.",
-          "You control local game data through your device settings, app deletion, or any in-app reset controls that may be available."
-        ]
-      },
-      {
-        heading: "Third-Party Services",
-        body: [
-          "Sequences does not use third-party advertising.",
-          "If platform or infrastructure services such as Firebase are used for app functionality, diagnostics, or data persistence, they are used only for the limited purpose described by the feature and platform configuration.",
-          "Where retention applies to Firebase-backed data, the current policy is limited retention of up to 90 days."
-        ]
-      },
-      {
-        heading: "Data Sharing",
-        body: [
-          "Eclipse Studios does not sell personal data.",
-          "We do not share personal data for cross-context behavioral advertising.",
-          "We may process limited technical information only to operate, secure, troubleshoot, and improve the app."
-        ]
-      },
-      {
-        heading: "Children's Privacy",
-        body: [
-          "Sequences is designed to avoid collecting personal information from children. If you believe a child provided personal information through any related support channel, contact us so we can help."
-        ]
-      },
-      {
-        heading: "Your Choices",
-        body: [
-          "You can delete local app data through your device settings or by deleting the app.",
-          "You can contact Eclipse Studios with privacy questions, access requests, or deletion guidance."
-        ]
-      },
-      {
-        heading: "Contact",
-        body: [`Privacy questions can be sent to ${supportEmail}.`]
+          "Sequences, Gridlock, and Tile Tangles are covered by one Eclipse Games Privacy Policy for web and Apple App Store app use."
+        ],
+        links: [{ label: "Read the Eclipse Games Privacy Policy", href: "docs/games/privacy.html" }]
       }
     ]
   },
@@ -297,9 +410,9 @@ export const docs = {
 
 export const docGroups = [
   {
-    appName: "Sequences",
-    summary: "Word puzzle game policies and terms.",
-    links: ["sequences-terms", "sequences-privacy"]
+    appName: "Eclipse Games",
+    summary: "Unified policies and terms for Sequences, Gridlock, and Tile Tangles.",
+    links: ["eclipse-games-terms", "eclipse-games-privacy"]
   },
   {
     appName: "Spy",

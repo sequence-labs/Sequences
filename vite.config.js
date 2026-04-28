@@ -21,6 +21,8 @@ export default defineConfig({
         patchItPrivacyLegacy: resolve(root, "patchit-privacy-policy.html"),
         supportLegacy: resolve(root, "user-support.html"),
         docsIndex: resolve(root, "docs/index.html"),
+        eclipseGamesTerms: resolve(root, "docs/games/terms.html"),
+        eclipseGamesPrivacy: resolve(root, "docs/games/privacy.html"),
         sequencesTerms: resolve(root, "docs/sequences/terms.html"),
         sequencesPrivacy: resolve(root, "docs/sequences/privacy.html"),
         spyPrivacy: resolve(root, "docs/spy/privacy.html"),
