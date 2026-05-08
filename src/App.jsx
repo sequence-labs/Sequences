@@ -782,7 +782,7 @@ function LegalPage({ docId }) {
           <p className="legal-summary">{doc.summary}</p>
           <div className="canonical-row">
             <a href={href(doc.canonicalPath)}>Canonical docs link</a>
-            <a href={href(doc.legacyPath)}>Legacy link</a>
+            {doc.legacyPath && <a href={href(doc.legacyPath)}>Legacy link</a>}
           </div>
           {doc.sections.map((section) => (
             <section key={section.heading}>

@@ -164,3 +164,12 @@ Validation results:
 
 Deployment target:
 - `https://www.eclipsestudios.io/docs/push-the-button/privacy.html`
+
+Follow-up issue:
+- After deployment, the Push The Button policy route returned HTML but rendered a blank page in the browser.
+- Browser-use confirmed a runtime error: `TypeError: Cannot read properties of undefined (reading 'startsWith')`.
+- Root cause: `LegalPage` always rendered a `Legacy link`, but the new Push The Button policy had no `legacyPath`.
+- Fix: make the legacy link conditional so clean-only policy routes render correctly.
+- `npm run build`: passed after the renderer fix.
+- `git diff --check`: passed after the renderer fix.
+- Browser-use local preview check at `http://127.0.0.1:4173/docs/push-the-button/privacy.html`: passed. The page rendered the `Push The Button Privacy Policy` heading and `Overview` section.
