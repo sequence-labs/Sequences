@@ -27,6 +27,7 @@ export default defineConfig({
         sequencesPrivacy: resolve(root, "docs/sequences/privacy.html"),
         spyPrivacy: resolve(root, "docs/spy/privacy.html"),
         patchItPrivacy: resolve(root, "docs/patchit/privacy.html"),
+        pushTheButtonPrivacy: resolve(root, "docs/push-the-button/privacy.html"),
         support: resolve(root, "docs/support.html")
       }
     }

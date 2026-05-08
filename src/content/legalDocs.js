@@ -381,6 +381,87 @@ export const docs = {
       }
     ]
   },
+  "push-the-button-privacy": {
+    kind: "Privacy",
+    appName: "Push The Button",
+    title: "Push The Button Privacy Policy",
+    updated: "May 7, 2026",
+    summary: "Push The Button is a fictional social debate experience that does not ask for names, email, contacts, location, payment information, or social accounts.",
+    canonicalPath: "docs/push-the-button/privacy.html",
+    sections: [
+      {
+        heading: "Overview",
+        body: [
+          "Push The Button is a fictional social debate experience from Eclipse Studios.",
+          "The app is designed to avoid asking for your name, email address, contacts, location, payment information, or social account."
+        ]
+      },
+      {
+        heading: "Information Push The Button Does Not Ask For",
+        body: [
+          "Push The Button does not ask you to create an account.",
+          "Push The Button does not ask for your name, email address, phone number, contact list, precise location, payment information, or social media account.",
+          "Push The Button does not require you to sign in with Apple, Google, Facebook, or another social provider."
+        ]
+      },
+      {
+        heading: "Vote Data",
+        body: [
+          "If a backend is enabled, Push The Button may submit vote data so the app can count submissions and reveal the fictional debate result after the scheduled reveal time.",
+          "Vote data is used only to count submissions, operate the debate experience, prevent obvious duplicate or invalid submissions where technically necessary, and show the final fictional result.",
+          "Vote data is not intended to identify you personally."
+        ]
+      },
+      {
+        heading: "Device and Technical Information",
+        body: [
+          "Push The Button may process limited technical information needed to run the app, deliver app updates, host backend features, troubleshoot crashes, prevent abuse, and maintain security.",
+          "This may include app version, device or operating-system version, browser or network request information for web use, crash details, or similar diagnostics provided by Apple, hosting providers, or infrastructure services."
+        ]
+      },
+      {
+        heading: "How Information Is Used",
+        body: [
+          "Eclipse Studios uses information from Push The Button to run the fictional debate experience, count votes, reveal scheduled results, troubleshoot problems, improve reliability, maintain security, and respond to support requests.",
+          "Eclipse Studios does not use Push The Button vote data to build personal profiles."
+        ]
+      },
+      {
+        heading: "Sharing and Sale of Data",
+        body: [
+          "Eclipse Studios does not sell personal data from Push The Button.",
+          "Eclipse Studios does not share Push The Button data for cross-context behavioral advertising.",
+          "Limited technical information may be processed by platform, hosting, diagnostics, or infrastructure providers only as needed to operate, secure, troubleshoot, distribute, or improve the app."
+        ]
+      },
+      {
+        heading: "Local Storage and Retention",
+        body: [
+          "Push The Button may store local app state or settings on your device so the experience works correctly.",
+          "If backend vote collection is enabled, vote records may be retained for as long as needed to count submissions, reveal the scheduled result, maintain integrity, troubleshoot issues, and operate the feature.",
+          "You can remove local app data by deleting the app or clearing site or app storage where your platform supports it."
+        ]
+      },
+      {
+        heading: "Children's Privacy",
+        body: [
+          "Push The Button is designed to avoid asking for personal information from children.",
+          "If you believe a child provided personal information through a support channel or app feature, contact Eclipse Studios so we can help."
+        ]
+      },
+      {
+        heading: "Changes to This Policy",
+        body: [
+          "Eclipse Studios may update this policy if Push The Button changes, if backend behavior changes, or if legal or platform requirements change.",
+          "If future features materially change data practices, this policy should be updated before or when those features are released."
+        ]
+      },
+      {
+        heading: "Contact",
+        body: [`Privacy questions can be sent to ${supportEmail}.`]
+      }
+    ]
+  },
   support: {
     kind: "Support",
     appName: "Eclipse Studios",
@@ -423,6 +504,11 @@ export const docGroups = [
     appName: "PatchIt",
     summary: "Road issue reporting privacy policy.",
     links: ["patchit-privacy"]
+  },
+  {
+    appName: "Push The Button",
+    summary: "Fictional social debate privacy policy.",
+    links: ["push-the-button-privacy"]
   },
   {
     appName: "Support",

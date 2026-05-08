@@ -22,6 +22,7 @@
 - WP9: Validate locally with Vite build, direct route loading, browser screenshots, and console checks.
 - WP10: Prepare final implementation summary and any App Store copy notes.
 - WP11: Publish `app-ads.txt` through the Vite static build so AdMob can crawl the custom domain root.
+- WP12: Add a dedicated Push The Button Privacy Policy route and docs hub entry.
 
 ## Estimated agent-hours
 
@@ -63,6 +64,7 @@
 - `git diff --check` succeeds.
 - Browser-use screenshots confirm the docs hub and unified docs render cleanly on desktop-sized and mobile-sized views if UI changes are made.
 - `dist/app-ads.txt` is emitted by `npm run build` and contains the AdMob publisher line exactly.
+- Push The Button privacy policy emits under `dist/docs/push-the-button/privacy.html`.
 
 ## Exact validation commands
 
@@ -95,6 +97,12 @@ AdMob validation target:
 http://127.0.0.1:4173/app-ads.txt
 ```
 
+Push The Button validation target:
+
+```text
+http://127.0.0.1:4173/docs/push-the-button/privacy.html
+```
+
 ## Stop and rollback conditions
 
 - Stop if policy drafting requires unsupported claims about Apple app data handling.
@@ -114,4 +122,5 @@ http://127.0.0.1:4173/app-ads.txt
 - `npm run build` and `git diff --check` have passed for the implementation.
 - Browser-use route checks are complete for the docs hub, clean unified legal routes, and legacy policy and terms routes.
 - `app-ads.txt` root publishing is implemented and locally validated for AdMob verification on `www.eclipsestudios.io`.
-- Next step is deployment by committing and pushing when requested.
+- Push The Button privacy policy is implemented and locally validated.
+- Next step is commit and push.

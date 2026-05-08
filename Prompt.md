@@ -24,6 +24,7 @@ The unified documents should preserve existing factual privacy claims, support c
 - Keep game-specific privacy distinctions where relevant, especially local storage, word-game progress, high scores, hints, and device or platform diagnostics.
 - Document validation steps for direct-route loading, GitHub Pages deployment, and App Store policy-link usability.
 - Publish `app-ads.txt` at the site root so Google AdMob can verify the custom developer website domain.
+- Add a public Push The Button privacy policy link for App Store and web policy use.
 
 ## Constraints
 
@@ -58,3 +59,4 @@ The unified documents should preserve existing factual privacy claims, support c
 - Performance budget: legal-doc consolidation should not materially increase the game bundle size.
 - App Store budget: final legal links must be stable, public, HTTPS, and accessible without login.
 - AdMob budget: `https://www.eclipsestudios.io/app-ads.txt` must resolve as plain text from the deployed site root.
+- Push The Button privacy budget: keep claims limited to the supplied facts: no name, email, contacts, location, payment information, or social account; backend vote data, if enabled, is used only for counting submissions and revealing the scheduled fictional result.

@@ -133,3 +133,34 @@ Validation results:
 
 Remaining deployment step:
 - Commit and push the change so GitHub Pages deploys `https://www.eclipsestudios.io/app-ads.txt`.
+
+## Push The Button privacy policy log
+
+Date: 2026-05-07
+
+Started a new privacy policy pass for `Push The Button`, described as a fictional social debate experience.
+
+User-provided privacy facts:
+- The app does not ask for name, email, contacts, location, payment information, or social account.
+- If a backend is enabled, vote data is used only to count submissions and reveal the fictional debate result after the scheduled reveal time.
+
+Files changed:
+- `src/content/legalDocs.js`: added `push-the-button-privacy` and a docs hub group for Push The Button.
+- `docs/push-the-button/privacy.html`: added the clean public privacy policy route.
+- `vite.config.js`: added the route to Vite build inputs.
+- `Prompt.md`, `Plan.md`, and `Documentation.md`: updated durable project state for this new app policy.
+
+Validation plan:
+- Run `npm run build`.
+- Confirm `dist/docs/push-the-button/privacy.html` is emitted.
+- Run `git diff --check`.
+- Preview `http://127.0.0.1:4173/docs/push-the-button/privacy.html` if needed before deployment.
+
+Validation results:
+- `npm run build`: passed. Vite emitted `dist/docs/push-the-button/privacy.html`.
+- `git diff --check`: passed.
+- `test -f dist/docs/push-the-button/privacy.html`: passed.
+- `curl -fsS http://127.0.0.1:4173/docs/push-the-button/privacy.html`: passed and returned the expected `Push The Button Privacy Policy | Eclipse Studios` HTML shell with `data-doc-id="push-the-button-privacy"`.
+
+Deployment target:
+- `https://www.eclipsestudios.io/docs/push-the-button/privacy.html`
