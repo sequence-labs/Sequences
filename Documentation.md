@@ -173,3 +173,8 @@ Follow-up issue:
 - `npm run build`: passed after the renderer fix.
 - `git diff --check`: passed after the renderer fix.
 - Browser-use local preview check at `http://127.0.0.1:4173/docs/push-the-button/privacy.html`: passed. The page rendered the `Push The Button Privacy Policy` heading and `Overview` section.
+
+## Maintenance run (2026-05-24)
+
+- Start note: User requested commit/push of current project state followed by cleanup of build/derived artifacts.
+- Current working tree showed: `.DS_Store` modified.
