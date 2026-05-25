@@ -184,3 +184,5 @@ Follow-up issue:
   - Push destination: `origin main` completed.
   - Build artifact cleanup: removed `/Users/iftatbhuiyan/Studio987/dist`.
   - Xcode DerivedData cleanup: no project-specific DerivedData folder found under `~/Library/Developer/Xcode/DerivedData` at this time.
+
+- Added detailed `README.md` documenting project purpose, structure, routes, scripts, and validation workflow for commit requested by user.
