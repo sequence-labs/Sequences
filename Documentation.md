@@ -178,3 +178,9 @@ Follow-up issue:
 
 - Start note: User requested commit/push of current project state followed by cleanup of build/derived artifacts.
 - Current working tree showed: `.DS_Store` modified.
+
+- Completed: commit/push + cleanup
+  - Commit: `8702ae9` (message: `Commit #5 - Save current project state and cleanup log`).
+  - Push destination: `origin main` completed.
+  - Build artifact cleanup: removed `/Users/iftatbhuiyan/Studio987/dist`.
+  - Xcode DerivedData cleanup: no project-specific DerivedData folder found under `~/Library/Developer/Xcode/DerivedData` at this time.
