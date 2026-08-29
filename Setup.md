@@ -69,3 +69,8 @@ http://127.0.0.1:4173/
 - Existing docs include Spy and PatchIt privacy pages; the current unified Eclipse Games legal request should not accidentally change those unless explicitly approved.
 - App Store legal wording may require facts from the native Apple app source, not only this web repo.
 - `app-ads.txt` must be present in `public/app-ads.txt` to publish through the current Vite/GitHub Pages Actions deployment.
+- The Me & You universal-link association is served at
+  `public/.well-known/apple-app-site-association`; GitHub Pages must return it
+  over HTTPS without a redirect. Apple CDN pickup can lag deployment.
+- `/join/` is intentionally absent from public navigation. Its fragment carries
+  the client-side invitation payload and is not included in HTTP requests.

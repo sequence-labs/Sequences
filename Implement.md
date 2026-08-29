@@ -7,6 +7,8 @@
 - Read `vite.config.js` before adding, removing, or renaming public HTML routes.
 - Read `src/App.jsx` before changing docs rendering, route detection, nav links, or legacy path handling.
 - Read the relevant game engine only if legal text depends on actual data behavior.
+- Read `join/index.html`, the AASA file, and the Me & You branded-link codec
+  before changing the invitation route contract.
 - Do not infer iOS data practices from web code; ask for or inspect the Apple app source if needed.
 
 ## Edit rules
@@ -17,6 +19,9 @@
 - Preserve legacy URLs unless the user explicitly approves a different mapping.
 - Keep clean docs URLs additive unless there is an approved migration plan.
 - Avoid unrelated UI or gameplay changes during legal-doc implementation.
+- Keep the Me & You route static and serverless. Invitation material belongs
+  only in the URL fragment; never move it into a path, query, log, cookie,
+  local storage, analytics event, or repository fixture.
 - Keep generated or very large files out of manual edits unless directly required.
 
 ## Testing rules
@@ -26,6 +31,8 @@
 - Use browser-use for UI-level legal page checks when docs rendering or navigation changes.
 - Check direct loading of legacy legal URLs and any new clean legal URLs.
 - Check browser console errors after legal page load.
+- Validate the `/join/` fallback with valid, missing, and malformed fragments,
+  and verify the AASA JSON and emitted content type after deployment.
 - Do not run broader validation commands unless they are relevant to the changed surface or requested.
 
 ## Documentation rules

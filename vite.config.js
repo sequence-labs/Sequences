@@ -28,7 +28,8 @@ export default defineConfig({
         spyPrivacy: resolve(root, "docs/spy/privacy.html"),
         patchItPrivacy: resolve(root, "docs/patchit/privacy.html"),
         pushTheButtonPrivacy: resolve(root, "docs/push-the-button/privacy.html"),
-        support: resolve(root, "docs/support.html")
+        support: resolve(root, "docs/support.html"),
+        meAndYouJoin: resolve(root, "join/index.html")
       }
     }
   }

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"
+    />
+    <title>Open your Me &amp; You invitation</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+        background: #f8f5f1;
+        color: #111827;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        padding: 32px 20px;
+        background:
+          radial-gradient(circle at 12% 8%, rgba(244, 180, 156, 0.2), transparent 38%),
+          radial-gradient(circle at 88% 86%, rgba(80, 128, 237, 0.12), transparent 42%),
+          #f8f5f1;
+      }
+
+      main { width: min(100%, 520px); }
+
+      .mark {
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(37, 99, 235, 0.18);
+        border-radius: 50%;
+        color: #1768e8;
+        font-size: 27px;
+        background: rgba(255, 255, 255, 0.58);
+      }
+
+      h1 {
+        margin: 30px 0 12px;
+        font-size: clamp(2.25rem, 9vw, 4rem);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+      }
+
+      p {
+        margin: 0;
+        max-width: 36rem;
+        color: #526078;
+        font-size: 1.12rem;
+        line-height: 1.55;
+      }
+
+      .rule {
+        height: 1px;
+        margin: 32px 0;
+        background: rgba(82, 96, 120, 0.18);
+      }
+
+      a {
+        min-height: 56px;
+        width: 100%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        margin-top: 28px;
+        border-radius: 999px;
+        background: #1768e8;
+        color: white;
+        font-size: 1.05rem;
+        font-weight: 650;
+        text-decoration: none;
+        box-shadow: 0 14px 32px rgba(23, 104, 232, 0.2);
+      }
+
+      a[data-ready="true"] { display: flex; }
+
+      .privacy {
+        margin-top: 22px;
+        font-size: 0.86rem;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root { background: #090b10; color: #f7f8fb; }
+        body {
+          background:
+            radial-gradient(circle at 12% 8%, rgba(121, 50, 31, 0.28), transparent 38%),
+            radial-gradient(circle at 88% 86%, rgba(23, 104, 232, 0.18), transparent 42%),
+            #090b10;
+        }
+        p { color: #aeb8ca; }
+        .mark { background: rgba(255, 255, 255, 0.06); }
+        .rule { background: rgba(174, 184, 202, 0.2); }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="mark" aria-hidden="true">∞</div>
+      <h1>Your partner invited you.</h1>
+      <p id="status" role="status">
+        Open this link on an iPhone with Me &amp; You installed to review the
+        invitation safely.
+      </p>
+      <div class="rule" aria-hidden="true"></div>
+      <p>
+        Nothing joins automatically. Me &amp; You checks the invitation with
+        iCloud and asks you to confirm before changing this device.
+      </p>
+      <a id="fallback" rel="noreferrer noopener">Continue to invitation</a>
+      <p class="privacy">
+        The invitation stays after the # in this address, so Eclipse Studios'
+        website does not receive it.
+      </p>
+    </main>
+    <script>
+      (() => {
+        const status = document.getElementById("status");
+        const fallback = document.getElementById("fallback");
+        const unavailable =
+          "This invitation is incomplete or no longer available. Ask your partner to send a new one.";
+
+        const renderInvitation = () => {
+          fallback.removeAttribute("href");
+          delete fallback.dataset.ready;
+          const encoded = new URLSearchParams(location.hash.slice(1)).get("invite");
+          if (!encoded || encoded.length > 8192) {
+            status.textContent = unavailable;
+            return;
+          }
+
+          try {
+            const normalized = encoded.replace(/-/g, "+").replace(/_/g, "/");
+            const padded = normalized.padEnd(
+              normalized.length + ((4 - (normalized.length % 4)) % 4),
+              "="
+            );
+            const bytes = Uint8Array.from(atob(padded), (value) => value.charCodeAt(0));
+            const invitation = new URL(new TextDecoder().decode(bytes));
+            const isICloudHost = invitation.hostname === "icloud.com"
+              || invitation.hostname.endsWith(".icloud.com");
+            if (invitation.protocol !== "https:" || !isICloudHost) {
+              status.textContent = unavailable;
+              return;
+            }
+
+            fallback.href = invitation.href;
+            fallback.dataset.ready = "true";
+            status.textContent =
+              "Me & You did not open automatically. You can continue using Apple's private invitation fallback.";
+          } catch {
+            status.textContent = unavailable;
+          }
+        };
+
+        addEventListener("hashchange", renderInvitation);
+        renderInvitation();
+      })();
+    </script>
+  </body>
+</html>

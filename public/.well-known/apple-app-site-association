@@ -1,0 +1,23 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "K794F89ADB.com.EclipseStudio.Kupid"
+        ],
+        "components": [
+          {
+            "/": "/join",
+            "#": "invite=?*",
+            "comment": "Open the Me & You partner invitation route."
+          },
+          {
+            "/": "/join/",
+            "#": "invite=?*",
+            "comment": "Open the canonical Me & You partner invitation route."
+          }
+        ]
+      }
+    ]
+  }
+}

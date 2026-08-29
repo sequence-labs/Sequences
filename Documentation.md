@@ -186,3 +186,47 @@ Follow-up issue:
   - Xcode DerivedData cleanup: no project-specific DerivedData folder found under `~/Library/Developer/Xcode/DerivedData` at this time.
 
 - Added detailed `README.md` documenting project purpose, structure, routes, scripts, and validation workflow for commit requested by user.
+
+## Me & You branded invitation route start (2026-08-29)
+
+- The user authorized `https://www.eclipsestudios.io/`, backed by this
+  repository, as the hidden customer-facing partner-invitation domain.
+- Live baseline: the site root returned HTTP 200 from GitHub Pages; `/join/`
+  and `/.well-known/apple-app-site-association` both returned HTTP 404.
+- Selected serverless boundary: `/join/` receives no secret in its HTTP path or
+  query. The app wraps the native CloudKit invitation in a URL fragment, which
+  the browser or installed app decodes locally. CloudKit remains the sole
+  access authority and the page provides only an explicit native fallback.
+- Acceptance: build emits both static resources, malformed fragments reveal no
+  relationship information, AASA is scoped only to the Kupid app and join
+  path, and the paired iOS build handles cold and warm universal-link delivery.
+- Browser QA found a stale-fragment defect: navigating from a valid invitation
+  fragment to a malformed fragment in the same tab did not reload the static
+  page, leaving the previous native fallback visible. No result was accepted;
+  the page must clear and re-validate state on every `hashchange`.
+
+## Me & You branded invitation route local completion (2026-08-29)
+
+- Fixed the stale-fragment defect by clearing the fallback and revalidating on
+  every `hashchange` before rendering a new state.
+- Added `join/index.html`, the exact-path AASA file at
+  `public/.well-known/apple-app-site-association`, a focused static validator,
+  a Vite build input, and deployment-workflow validation.
+- `npm run build`: passed; `dist/join/index.html` and the AASA resource were
+  emitted. Vite retained the pre-existing large-bundle advisory; it is not
+  caused by the standalone invitation page and is outside WP13.
+- `npm run validate:invite`: passed with the expected team ID, bundle ID,
+  exact join components, fragment rule, no-network policy, and explicit native
+  fallback markers.
+- `git diff --check`: passed.
+- Browser QA passed for valid and malformed fragments at a mobile viewport:
+  the valid state exposed one explicit fallback, changing the same tab to a
+  malformed fragment removed it, and both states produced zero console errors.
+- Local preview serves the AASA bytes successfully but does not set a useful
+  Content-Type. GitHub Pages deployment must therefore be followed by a live
+  no-redirect fetch and an Apple universal-link/device check. If Apple's CDN
+  rejects the static response, move the association resource to hosting with
+  explicit JSON content-type control rather than weakening the app route.
+- Deployment was intentionally deferred until the paired iOS Release build
+  proved the matching signed Associated Domains entitlement. That signing gate
+  has now passed; the scoped site files are ready for commit and push.

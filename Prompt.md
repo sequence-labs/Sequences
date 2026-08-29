@@ -13,6 +13,8 @@ The unified documents should preserve existing factual privacy claims, support c
 - Do not invent new data collection claims that are not supported by the apps or current code.
 - Do not add accounts, analytics, ads, Firebase, cloud sync, payments, or backend services as part of this legal-doc consolidation.
 - Do not change gameplay behavior while working on legal documents.
+- Do not turn the invitation route into an account system, relationship
+  database, analytics surface, or server-side invitation resolver.
 - Do not treat generated policy text as legal advice; final wording needs owner/legal review before production reliance.
 
 ## Scope
@@ -25,6 +27,10 @@ The unified documents should preserve existing factual privacy claims, support c
 - Document validation steps for direct-route loading, GitHub Pages deployment, and App Store policy-link usability.
 - Publish `app-ads.txt` at the site root so Google AdMob can verify the custom developer website domain.
 - Add a public Push The Button privacy policy link for App Store and web policy use.
+- Provide the hidden `https://www.eclipsestudios.io/join/` fallback page and
+  Apple association file used by the Me & You iOS app's branded partner
+  invitations. The CloudKit invitation value must stay in the URL fragment so
+  it is not sent to GitHub Pages or ordinary server logs.
 
 ## Constraints
 
