@@ -230,3 +230,25 @@ Follow-up issue:
 - Deployment was intentionally deferred until the paired iOS Release build
   proved the matching signed Associated Domains entitlement. That signing gate
   has now passed; the scoped site files are ready for commit and push.
+
+## Me & You branded invitation deployment (2026-08-29)
+
+- Committed only the scoped invitation/site documentation files as
+  `27bdb5e` (`Commit #9 - Add Me and You universal invitation route`) and left
+  the pre-existing `.DS_Store` modification out of the commit.
+- Pushed `main` to the repository's current GitHub location,
+  `sequence-labs/Sequences`. GitHub reported that the old Studio987 remote URL
+  redirects to that repository and allowed the configured protected-branch
+  bypass for this push.
+- GitHub Pages run `33237713500` passed both build and deploy jobs. The focused
+  invitation validator passed in CI. GitHub emitted a dependency-action Node 20
+  deprecation advisory, but no build or deploy failure.
+- Live `https://www.eclipsestudios.io/join/`: HTTP 200,
+  `text/html; charset=utf-8`; in-app browser mobile QA rendered the valid
+  explicit-fallback state successfully.
+- Live `https://www.eclipsestudios.io/.well-known/apple-app-site-association`:
+  HTTP 200, no redirect, `application/octet-stream`, and byte-for-byte equal to
+  the validated build artifact.
+- Apple's association CDN still returns its cached pre-deployment 404 with a
+  one-hour cache policy. This is an external propagation state, not a site 404;
+  recheck the CDN before installed-app universal-link acceptance.

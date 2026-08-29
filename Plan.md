@@ -141,7 +141,7 @@ http://127.0.0.1:4173/.well-known/apple-app-site-association
 - `app-ads.txt` root publishing is implemented and locally validated for AdMob verification on `www.eclipsestudios.io`.
 - Push The Button privacy policy is implemented and locally validated.
 - Next step is commit and push.
-- WP13 branded Me & You invitation route is implemented and locally validated.
-  Deployment and post-deploy Apple association/device validation remain; the
-  live baseline on 2026-08-29 was HTTP 404 for both `/join/` and the AASA
-  resource.
+- WP13 branded Me & You invitation route is implemented, deployed, and directly
+  validated. Both `/join/` and the AASA resource now return HTTP 200. Apple's
+  association CDN still holds the pre-deployment 404 until its cache refreshes;
+  final installed-app and two-device acceptance remain.
