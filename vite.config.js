@@ -20,6 +20,8 @@ export default defineConfig({
         spyPrivacyLegacy: resolve(root, "spy-privacy-policy.html"),
         patchItPrivacyLegacy: resolve(root, "patchit-privacy-policy.html"),
         supportLegacy: resolve(root, "user-support.html"),
+        pawrisePrivacy: resolve(root, "docs/pawrise/privacy/index.html"),
+        pawriseCommunity: resolve(root, "docs/pawrise/community/index.html"),
         docsIndex: resolve(root, "docs/index.html"),
         eclipseGamesTerms: resolve(root, "docs/games/terms.html"),
         eclipseGamesPrivacy: resolve(root, "docs/games/privacy.html"),
