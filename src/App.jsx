@@ -57,7 +57,8 @@ function pathToRoot() {
   if (window.location.hostname.endsWith("github.io") && sitePath.startsWith("Sequences/")) {
     sitePath = sitePath.slice("Sequences/".length);
   }
-  const depth = sitePath.split("/").filter(Boolean).length - 1;
+  const segments = sitePath.split("/").filter(Boolean);
+  const depth = sitePath.endsWith("/") ? segments.length : segments.length - 1;
   return depth > 0 ? "../".repeat(depth) : "";
 }
 

@@ -1,6 +1,136 @@
 export const supportEmail = "spermwhaledaily@gmail.com";
 
 export const docs = {
+  "pawrise-community": {
+  "kind": "Community",
+  "appName": "PawRise",
+  "title": "PawRise Community Rules",
+  "updated": "November 12, 2026",
+  "summary": "Keep public hotels friendly. Learn what is shared and how to report, hide, block or go private.",
+  "canonicalPath": "docs/pawrise/community/",
+  "sections": [
+    {
+      "heading": "What going public shares",
+      "body": [
+        "Public hotel is off unless you turn it on in Community → My Profile. When it's on, anyone playing PawRise can see your hotel on Global and visit it. That includes guests who haven't signed in. They see:",
+        "your @player tag and hotel name;",
+        "your hotel level, room count and pet count;",
+        "your hotel's look: its rooms, layout, decorations and pets;",
+        "when you first went public and when your hotel was last updated.",
+        "Your coins, gems, purchases, pet names, friends and the hotels you follow stay private. Following is private and one-way: nobody is told when you follow them, and there are no follower counts."
+      ]
+    },
+    {
+      "heading": "13 and older only",
+      "body": [
+        "Public hotels are for players 13 and older. PawRise asks Apple for your age range when it can. If Apple can't answer, you confirm your age yourself. If you're under 13, your hotel stays private, and you can still share it with accepted friends and visit public hotels."
+      ]
+    },
+    {
+      "heading": "Keep it friendly",
+      "body": [
+        "Choose a player tag and hotel name you'd be happy for anyone to see. No offensive, hateful, sexual or bullying names, and no names that pretend to be someone else. PawRise filters some words, but no filter catches everything, so reports matter.",
+        "Levels on Global are reported by each player's game. Please don't tamper with yours. Hotels that look tampered with can be removed from Global."
+      ]
+    },
+    {
+      "heading": "Report, Hide and Block",
+      "body": [
+        "Every public hotel has a ⋯ menu, and a visit has its own Report and Block buttons.",
+        "Report hotel sends a private report to PawRise support with the hotel's tag and the reason you chose. The other player isn't told. Reporting doesn't block anyone.",
+        "Hide on this device is for guests. The hotel disappears from your lists on this device straight away. A guest report hides the hotel too.",
+        "Block player needs Sign in with Apple. It removes any friendship, stops friend requests, and stops either of you from opening the other's hotel. Their hotel also leaves your Global and Following lists. You can unblock in My Profile → Blocked players."
+      ]
+    },
+    {
+      "heading": "Block isn't the same as going private",
+      "body": [
+        "Block stops that account opening or visiting your hotel, though its name can still appear in their lists. Guests can browse public hotels without an account, so to hide your hotel from everyone, turn Public hotel off.",
+        "Turning Public hotel off takes your hotel off Global and stops public visits right away. Accepted friends can still visit if you share with them."
+      ]
+    },
+    {
+      "heading": "Moderation",
+      "body": [
+        "PawRise support reviews reports. The developer can remove any hotel from Global at any time, and can stop an account going public again, for example after a report, an offensive name or a level that looks tampered with. Removing a hotel from Global never touches the hotel in your game."
+      ]
+    },
+    {
+      "heading": "Contact support",
+      "body": [
+        "Use Report a Problem in the game's Settings, or email spermwhaledaily@gmail.com. Please include your @tag, or the @tag you're reporting, and what happened. We usually reply within 24 to 48 hours."
+      ]
+    }
+  ]
+},
+  "pawrise-privacy": {
+  "kind": "Privacy",
+  "appName": "PawRise",
+  "title": "PawRise Privacy Policy",
+  "updated": "November 12, 2026",
+  "summary": "How PawRise handles guest identities, gameplay analytics, private progress backups, diagnostics, support, and optional public hotels.",
+  "canonicalPath": "docs/pawrise/privacy/",
+  "sections": [
+    {
+      "heading": "Playing and guest identity",
+      "body": [
+        "PawRise creates an automatic guest identity through Firebase Authentication when you first connect, so you can play without signing in. This identifier connects your installation to private progress backups, support and gameplay records. Optional Sign in with Apple connects account and social features."
+      ]
+    },
+    {
+      "heading": "Gameplay analytics",
+      "body": [
+        "PawRise collects bounded gameplay events such as sessions, progression, room actions, rewards, purchases and feature interactions to understand play and reliability. You can turn gameplay analytics off in Settings. Analytics events contain no player names, messages or free text. They include an account or guest identifier, installation identifier, app version, build and environment."
+      ]
+    },
+    {
+      "heading": "Private hotel progress and recovery",
+      "body": [
+        "Private compressed hotel progress backups help the developer investigate lost progress and queue a recovery for your next connection. Backups include gameplay state and player-chosen hotel and pet names; they are separate from analytics and public hotel sharing. Routine history is scheduled to expire after about 45 days and milestone history after about 400 days. Raw analytics is scheduled to expire after about 120 days. Expiration is asynchronous, and the current backup and compiled reports have no automatic expiry."
+      ]
+    },
+    {
+      "heading": "Crash and diagnostic data",
+      "body": [
+        "Firebase Crashlytics collects crashes and nonfatal diagnostics in production builds to help fix reliability problems. Reports can be linked to your guest or account identifier. App diagnostic categories and breadcrumbs do not intentionally include player names, messages or player-written text."
+      ]
+    },
+    {
+      "heading": "Report a Problem and support",
+      "body": [
+        "Support reports include a support ID, category, app and installation details, a progress summary and an optional message you choose to send. Reports and developer notes are private and separate from gameplay analytics. The developer may inspect private backups and arrange a recovery when helping with progress problems.",
+        "Reports about other players are private. A signed-in report records the reported account, the reason you choose and any short message you add. A guest's report about a public hotel is sent as a support report naming that hotel's player tag and account identifier, with the reason you choose, and it hides the hotel on your device. Reporting does not block the other player or tell them about the report. Gameplay analytics records only that a report, follow or visit happened, never the other player's name, tag or identifier."
+      ]
+    },
+    {
+      "heading": "Social features, purchases and advertising",
+      "body": [
+        "Optional account and friend features store your chosen player and hotel names, social relationships, blocked players, the hotels you follow and your shared hotel layout. Sharing your hotel with friends and making it public are both optional and off until you turn them on. Apple processes in-app purchases. Optional rewarded videos use Google AdMob, which may process device, advertising and diagnostic information under its own privacy policy. PawRise does not use its guest identity, gameplay analytics, backups, support reports or public hotel data for cross-app tracking."
+      ]
+    },
+    {
+      "heading": "Public hotels",
+      "body": [
+        "Public hotel is an optional setting for players signed in with Apple, and it is off until you turn it on. When it is on, anyone using PawRise can find your hotel on Global and visit it, including guests who have not signed in. Global shows your player tag, hotel name, hotel level, room and pet counts, a preview room, when you first went public and when your listing was last updated. Visitors see a snapshot of your hotel's look: its layout, rooms and room levels, decorations, environment, and each pet's species, sex and baby status. The snapshot contains no coins, gems, purchases, pet names, friends, follows or timers. Your game sends these details, and levels shown on Global are reported by each player's game.",
+        "Public hotels are for players 13 and older. Before your first listing, PawRise asks Apple's Declared Age Range for your age range when it is available, or asks you to confirm that you are 13 or older. PawRise stores only that the check was passed and which method was used, never your birth date or exact age. If Apple reports that you are under 13, your device remembers this for that account and the hotel stays private. Following a public hotel is private: the hotels you follow are stored with your account, or only on your device if you have not signed in, and are never shown to anyone else. Blocking stores the blocked account's player and hotel names so you can manage your blocked list, and it stops either account opening the other's hotel. Reports about public hotels go privately to the developer, as described under Report a Problem and support.",
+        "You can turn Public hotel off at any time in My Profile. Your Global listing and public copy are removed straight away, and public visits stop, while sharing with accepted friends is unchanged. Making your hotel private also removes the copy friends can visit. Blocking stops that account opening or visiting your hotel, though your Global listing can still appear in its lists. Turning Public hotel off is the way to hide your hotel from everyone. The developer can remove any hotel from Global, for example after a report, and can stop an account from going public again. The PawRise Community Rules at https://www.eclipsestudios.io/docs/pawrise/community/ explain reporting, hiding and blocking."
+      ]
+    },
+    {
+      "heading": "Deletion and retention",
+      "body": [
+        "Deleting an account in PawRise starts removal of its connected progress backups and history, raw analytics and registry records, alongside account and social data. Support reports and developer notes are not automatically erased by the current account-deletion flow; contact support to request their removal. Turning analytics off stops future gameplay analytics; it does not by itself delete existing records. Compiled aggregate reports may remain. Contact support for help with guest data or privacy requests. Local game progress remains on your device unless you remove it.",
+        "Turning Public hotel off deletes your Global listing and public hotel copy at once. A small private listing record stays with your account so the game can keep your first listing date, a short relisting wait, your highest listed level and your age-check result. It is never shown to other players, and it is deleted when you delete your account. Account deletion also deletes your follows, your blocked list and your public listing. If an account is deleted from an older version of PawRise, a leftover Global row and its private listing record can remain until the developer removes them. Copies that other players' devices have already loaded may stay in their local cache until their next refresh. Reports about other players are kept as private support records. Contact support to request their removal."
+      ]
+    },
+    {
+      "heading": "Service providers and contact",
+      "body": [
+        "PawRise uses Google Firebase for authentication, connected data and crash reporting, and Apple for optional sign-in and purchases. Developer access to private records is restricted to operating the game, diagnosing problems and providing support. Privacy questions and deletion requests can be sent to spermwhaledaily@gmail.com."
+      ]
+    }
+  ]
+},
   "eclipse-games-terms": {
     kind: "Terms",
     appName: "Eclipse Games",
@@ -490,6 +620,7 @@ export const docs = {
 };
 
 export const docGroups = [
+  { appName: "PawRise", summary: "Pet hotel privacy and community rules.", links: ["pawrise-privacy", "pawrise-community"] },
   {
     appName: "Eclipse Games",
     summary: "Unified policies and terms for Sequences, Gridlock, and Tile Tangles.",
